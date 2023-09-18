@@ -23,8 +23,18 @@ app.post("/ufo", (req, res) => {
     res.status(200).json({ ufo: "Received JSON data from an unknown planet." });
   } else if (contentType === "application/xml") {
     try {
-      const xmlDoc = libxmljs.parseXml(req.body, {
-        noent: true, // Configure libxmljs to disable entity expansion
+
+      xmlDataSanitized = req.body.replace(/<!DOCTYPE[^>]*>/g, ''); // Remove any DOCTYPE occurence
+      xmlDataSanitized = req.body.replace(/<!\[CDATA\[[^\]]*\]\]>/g, ''); // Remove any CDATA occurence
+      const xmlDoc = libxmljs.parseXml(xmlData, {
+        replaceEntities: false,
+        recover: false,
+        nonet: true, // No need to access network
+        noent: false,
+        // replaceEntities: false, // Don't replace XML entities
+        // recover: false,
+        // nonet: true,
+        // noent: true,
       });
 
       console.log("Received XML data from XMLon:", xmlDoc.toString());
