@@ -25,7 +25,7 @@ app.post("/ufo", (req, res) => {
     try {
 
       xmlDataSanitized = req.body.replace(/<!DOCTYPE[^>]*>/g, ''); // Remove any DOCTYPE occurence
-      xmlDataSanitized = req.body.replace(/<!\[CDATA\[[^\]]*\]\]>/g, ''); // Remove any CDATA occurence
+      // xmlDataSanitized = req.body.replace(/<!\[CDATA\[[^\]]*\]\]>/g, ''); // Remove any CDATA occurence
       const xmlDoc = libxmljs.parseXml(xmlData, {
         replaceEntities: false,
         recover: false,
