@@ -7,8 +7,8 @@
 ///                                                      		///
 ///////////////////////////////////////////////////////////////
 
-const app = require("./code");
-// const app = require("./solution"); // To test the solution, uncomment this line and comment the one above
+// const app = require("./code");
+const app = require("./solution"); // To test the solution, uncomment this line and comment the one above
 const request = require("supertest");
 const { expect } = require("chai");
 
@@ -27,7 +27,7 @@ describe("Security tests", () => {
       .expect(400) // Expecting a 400 response due to security measures
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.text).to.include("Invalid XML:");
+        expect(res.text).to.include("Invalid XML");
         done();
       });
   });
@@ -48,7 +48,7 @@ describe("Security tests", () => {
       .expect(400) // Expecting a 400 response due to security measures
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.text).to.include("Invalid XML:");
+        expect(res.text).to.include("Invalid XML");
         done();
       });
   });
@@ -69,7 +69,7 @@ describe("Security tests", () => {
       .expect(400) // Expecting a 400 response due to security measures
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.text).to.include("Invalid XML:");
+        expect(res.text).to.include("Invalid XML");
         done();
       });
   });
@@ -89,7 +89,7 @@ describe("Security tests", () => {
         .expect(400) // Expecting a 400 response due to security measures
         .end((err, res) => {
           if (err) return done(err);
-          expect(res.text).to.include("Invalid XML:");
+          expect(res.text).to.include("Invalid XML");
           done();
         });
     });
@@ -113,7 +113,7 @@ describe("Security tests", () => {
       .expect(400) // Expecting a 400 response due to security measures
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.text).to.include("Invalid XML:");
+        expect(res.text).to.include("Invalid XML");
         done();
       });
   });

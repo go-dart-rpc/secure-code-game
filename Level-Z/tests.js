@@ -50,7 +50,7 @@ describe('POST /ufo', () => {
       .expect(400)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.text).to.include('Invalid XML:');
+        expect(res.text).to.include('Invalid XML');
         done();
       });
   });

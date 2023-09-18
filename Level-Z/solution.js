@@ -24,7 +24,7 @@ app.post("/ufo", (req, res) => {
   } else if (contentType === "application/xml") {
     try {
       const xmlDoc = libxmljs.parseXml(req.body, {
-        replaceEntities: false, // Don't replace XML entities
+        noent: true, // Configure libxmljs to disable entity expansion
       });
 
       console.log("Received XML data from XMLon:", xmlDoc.toString());
@@ -44,7 +44,7 @@ app.post("/ufo", (req, res) => {
         xmlDoc.toString().includes('SYSTEM "') &&
         xmlDoc.toString().includes(".admin")
       ) {
-        res.status(400).send("Invalid XML: " + error.message); // Don't execute anything
+        res.status(400).send("Invalid XML"); // Don't execute anything
       } else {
         res
           .status(200)
@@ -52,8 +52,8 @@ app.post("/ufo", (req, res) => {
           .send(extractedContent.join(" "));
       }
     } catch (error) {
-      console.error("XML parsing or validation error:", error.message);
-      res.status(400).send("Invalid XML: " + error.message);
+      console.error("XML parsing or validation error");
+      res.status(400).send("Invalid XML");
     }
   } else {
     res.status(405).send("Unsupported content type");
