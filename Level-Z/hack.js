@@ -7,8 +7,8 @@
 ///                                                      		///
 ///////////////////////////////////////////////////////////////
 
-// const app = require("./code");
-const app = require("./solution"); // To test the solution, uncomment this line and comment the one above
+const app = require("./code");
+// const app = require("./solution"); // To test the solution, uncomment this line and comment the one above
 const request = require("supertest");
 const { expect } = require("chai");
 
@@ -26,7 +26,7 @@ describe("Security tests", () => {
       .send(xmlPayload)
       .expect(400) // Expecting a 400 response due to security measures
       .end((err, res) => {
-        if (err) return done(err);
+        if (err) return done(err + "\n" +  res.text);
         expect(res.text).to.include("Invalid XML");
         done();
       });
@@ -47,7 +47,7 @@ describe("Security tests", () => {
       .send(maliciousXmlPayload)
       .expect(400) // Expecting a 400 response due to security measures
       .end((err, res) => {
-        if (err) return done(err);
+        if (err) return done(err + "\n" +  res.text);
         expect(res.text).to.include("Invalid XML");
         done();
       });
@@ -68,7 +68,7 @@ describe("Security tests", () => {
       .send(maliciousXmlPayload)
       .expect(400) // Expecting a 400 response due to security measures
       .end((err, res) => {
-        if (err) return done(err);
+        if (err) return done(err + "\n" +  res.text);
         expect(res.text).to.include("Invalid XML");
         done();
       });
@@ -88,7 +88,7 @@ describe("Security tests", () => {
         .send(xmlPayload)
         .expect(400) // Expecting a 400 response due to security measures
         .end((err, res) => {
-          if (err) return done(err);
+          if (err) return done(err + "\n" +  res.text);
           expect(res.text).to.include("Invalid XML");
           done();
         });
@@ -112,7 +112,7 @@ describe("Security tests", () => {
       .send(providedXmlPayload)
       .expect(400) // Expecting a 400 response due to security measures
       .end((err, res) => {
-        if (err) return done(err);
+        if (err) return done(err + "\n" +  res.text);
         expect(res.text).to.include("Invalid XML");
         done();
       });
